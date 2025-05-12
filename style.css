@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.calculator-container {
+  background-color: #000;
+  border-radius: 20px;
+  padding: 20px;
+  width: 80vw;
+}
+
+.display-box {
+  /* background-color: #1c1c1c; */
+  color: white;
+  font-size: 2.5rem;
+  text-align: right;
+  padding: 10px;
+  border: 2px solid #2d2d2d;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  height: 80px;
+  overflow: hidden;
+  font-family: "Digital-7", "Orbitron", monospace;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.buttons-grid button {
+  background: #2d2d2d;
+  border-radius: 30px;
+  box-shadow: 6px 6px 12px #1a1a1a, -3px -3px #3e3e3e;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  padding: 20px 0;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.buttons-grid button:hover {
+  background: #3a3a3a;
+  box-shadow: inset 4px 4px 8px #1a1a1a, inset -4px -4px 8px #4a4a4a;
+}
+
+.buttons-grid button:nth-of-type(33) {
+  border-radius: 30px;
+  box-shadow: 6px 6px 12px #000000, inset -3px -3px 8px #3e3e3e;
+  border: none;
+  background-color: #0048ff;
+  color: black;
+  transition: all 0.5s ease;
+}
+.buttons-grid button:nth-of-type(33):hover {
+  background: #3a3a3a;
+  box-shadow: inset 4px 4px 8px #1a1a1a, inset -4px -4px 8px #0055ff;
+  color: white;
+}
+.buttons-grid button:nth-of-type(1):hover {
+  background: #3a3a3a;
+  box-shadow: inset 4px 4px 8px #1a1a1a, inset -4px -4px 8px #f00;
+  color: white;
+}
+.first-box {
+  display: flex;
+  justify-content: space-evenly;
+  grid-column: span 2;
+}
+.turn-red {
+  color: red;
+}
+.history-box {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+/* medium screen */
+@media (max-width: 590px) {
+  .calculator-container {
+    width: 95vw;
+    padding: 10px;
+  }
+
+  .display-box {
+    font-size: 1.5rem;
+    height: 60px;
+  }
+
+  .buttons-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .buttons-grid button {
+    font-size: 1rem;
+    padding: 10px 0;
+    display: none;
+  }
+
+  /* Show only essential buttons */
+  .buttons-grid button[data-value="("],
+  .buttons-grid button[data-value=")"],
+  .buttons-grid button[data-value="%"],
+  .buttons-grid button[data-value="AC"],
+  .buttons-grid button[data-value="0"],
+  .buttons-grid button[data-value="1"],
+  .buttons-grid button[data-value="2"],
+  .buttons-grid button[data-value="3"],
+  .buttons-grid button[data-value="4"],
+  .buttons-grid button[data-value="5"],
+  .buttons-grid button[data-value="6"],
+  .buttons-grid button[data-value="7"],
+  .buttons-grid button[data-value="8"],
+  .buttons-grid button[data-value="9"],
+  .buttons-grid button[data-value="."],
+  .buttons-grid button[data-value="+"],
+  .buttons-grid button[data-value="x"],
+  .buttons-grid button[data-value="-"],
+  .buttons-grid button[data-value="/"],
+  .buttons-grid button[data-value="="] {
+    display: block;
+  }
+}
