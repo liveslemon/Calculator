@@ -13,6 +13,9 @@ body {
 }
 
 .calculator-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   background-color: #000;
   border-radius: 20px;
   padding: 20px;
@@ -88,51 +91,6 @@ body {
   color: #444;
 }
 /* medium screen */
-@media (max-width: 590px) {
-  .calculator-container {
-    width: 95vw;
-    padding: 10px;
-  }
-
-  .display-box {
-    font-size: 1.5rem;
-    height: 60px;
-  }
-
-  .buttons-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .buttons-grid button {
-    font-size: 1rem;
-    padding: 10px 0;
-    display: none;
-  }
-
-  /* Show only essential buttons */
-  .buttons-grid button[data-value="("],
-  .buttons-grid button[data-value=")"],
-  .buttons-grid button[data-value="%"],
-  .buttons-grid button[data-value="AC"],
-  .buttons-grid button[data-value="0"],
-  .buttons-grid button[data-value="1"],
-  .buttons-grid button[data-value="2"],
-  .buttons-grid button[data-value="3"],
-  .buttons-grid button[data-value="4"],
-  .buttons-grid button[data-value="5"],
-  .buttons-grid button[data-value="6"],
-  .buttons-grid button[data-value="7"],
-  .buttons-grid button[data-value="8"],
-  .buttons-grid button[data-value="9"],
-  .buttons-grid button[data-value="."],
-  .buttons-grid button[data-value="+"],
-  .buttons-grid button[data-value="x"],
-  .buttons-grid button[data-value="-"],
-  .buttons-grid button[data-value="/"],
-  .buttons-grid button[data-value="="] {
-    display: block;
-  }
-}
 .display-container {
   position: relative;
   background: #0e0f13;
@@ -172,10 +130,7 @@ body {
   z-index: 100;
 }
 #history-btn {
-  position: absolute;
-  top: 29%;
-  left: 15%;
-  transform: translate(-50%, -50%);
+  position: relative;
   z-index: 10;
 }
 .dropdown-item {
@@ -221,4 +176,166 @@ body {
 .material-symbols-outlined {
   font-size: 2rem;
   color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  /* position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-50%, -50%); */
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Hide toggle container by default */
+/* .container {
+  display: none;
+} */
+.container .toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 45px;
+  background: #000000;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px #1a1a1a, -2px -2px 4px #3e3e3e;
+}
+
+.container .toggle .toggle-btn {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 35px;
+  height: 35px;
+  background: #0008ff;
+  border-radius: 50%;
+  transition: left 0.3s ease-in-out;
+  box-shadow: inset 4px 4px 8px #1a1a1a, inset -4px -4px 8px #2b00ff;
+}
+
+.container .toggle.active {
+  background: #000000;
+}
+
+.container .toggle.active .toggle-btn {
+  left: 40px;
+  background: #2f00ff;
+  box-shadow: inset 4px 4px 8px #1a1a1a, inset -4px -4px 8px #c00000;
+}
+
+.text {
+  color: white;
+  position: absolute;
+  left: 5rem;
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+@media (max-width: 590px) {
+  .container {
+    display: block;
+  }
+  .calculator-container {
+    width: 95vw;
+    padding: 10px;
+  }
+
+  .display-box {
+    font-size: 1.5rem;
+    height: 60px;
+  }
+
+  .buttons-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .buttons-grid button {
+    font-size: 1rem;
+    padding: 10px 0;
+    display: none;
+  }
+
+  /* Show only essential buttons */
+  .buttons-grid button[data-value="("],
+  .buttons-grid button[data-value=")"],
+  .buttons-grid button[data-value="%"],
+  .buttons-grid button[data-value="*"],
+  .buttons-grid button[data-value="AC"],
+  .buttons-grid button[data-value="0"],
+  .buttons-grid button[data-value="1"],
+  .buttons-grid button[data-value="2"],
+  .buttons-grid button[data-value="3"],
+  .buttons-grid button[data-value="4"],
+  .buttons-grid button[data-value="5"],
+  .buttons-grid button[data-value="6"],
+  .buttons-grid button[data-value="7"],
+  .buttons-grid button[data-value="8"],
+  .buttons-grid button[data-value="9"],
+  .buttons-grid button[data-value="."],
+  .buttons-grid button[data-value="+"],
+  .buttons-grid button[data-value="-"],
+  .buttons-grid button[data-value="/"],
+  .buttons-grid button[data-value="="] {
+    display: block;
+  }
+  .container {
+    display: block;
+  }
+  .buttons-grid.basic-btn button {
+    display: none;
+  }
+  .buttons-grid.basic-btn button[data-value="("],
+  .buttons-grid.basic-btn button[data-value=")"],
+  .buttons-grid.basic-btn button[data-value="%"],
+  .buttons-grid.basic-btn button[data-value="*"],
+  .buttons-grid.basic-btn button[data-value="AC"],
+  .buttons-grid.basic-btn button[data-value="0"],
+  .buttons-grid.basic-btn button[data-value="1"],
+  .buttons-grid.basic-btn button[data-value="2"],
+  .buttons-grid.basic-btn button[data-value="3"],
+  .buttons-grid.basic-btn button[data-value="4"],
+  .buttons-grid.basic-btn button[data-value="5"],
+  .buttons-grid.basic-btn button[data-value="6"],
+  .buttons-grid.basic-btn button[data-value="7"],
+  .buttons-grid.basic-btn button[data-value="8"],
+  .buttons-grid.basic-btn button[data-value="9"],
+  .buttons-grid.basic-btn button[data-value="."],
+  .buttons-grid.basic-btn button[data-value="+"],
+  .buttons-grid.basic-btn button[data-value="-"],
+  .buttons-grid.basic-btn button[data-value="/"],
+  .buttons-grid.basic-btn button[data-value="="] {
+    display: block;
+  }
+
+  .buttons-grid.sci-btn button {
+    display: none;
+  }
+
+  .buttons-grid.sci-btn button[data-value="mode"],
+  .buttons-grid.sci-btn button[data-value="!"],
+  .buttons-grid.sci-btn button[data-value="Inv"],
+  .buttons-grid.sci-btn button[data-value="sin("],
+  .buttons-grid.sci-btn button[data-value="cos("],
+  .buttons-grid.sci-btn button[data-value="tan("],
+  .buttons-grid.sci-btn button[data-value="log("],
+  .buttons-grid.sci-btn button[data-value="ln("],
+  .buttons-grid.sci-btn button[data-value="^"],
+  .buttons-grid.sci-btn button[data-value="√("],
+  .buttons-grid.sci-btn button[data-value="π"],
+  .buttons-grid.sci-btn button[data-value="Ans"],
+  .buttons-grid.sci-btn button[data-value="EXP"],
+  .buttons-grid.sci-btn button[data-value="="],
+  .buttons-grid.sci-btn button[data-value="e"] {
+    display: block;
+  }
 }

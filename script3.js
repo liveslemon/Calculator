@@ -136,6 +136,9 @@ buttons.forEach(function (button) {
     if (value === "mode") {
       return;
     }
+    if (value === "Inv") {
+      return;
+    }
     if (value === "Ans") {
       const lastCalc = calculationHistory[calculationHistory.length - 1];
       if (lastCalc) {
@@ -282,3 +285,24 @@ document.addEventListener("click", function (event) {
     dropdown.classList.add("hidden");
   }
 });
+
+const toggle = document.querySelector(".toggle");
+const text = document.querySelector(".text");
+function animatedToggle() {
+  toggle.classList.toggle("active");
+
+  const isActive = toggle.classList.contains("active");
+  text.innerHTML = isActive ? "FX" : "123";
+
+  const buttonsGrid = document.querySelector(".buttons-grid");
+  if (isActive) {
+    buttonsGrid.classList.remove("basic-btn");
+    buttonsGrid.classList.add("sci-btn");
+  } else {
+    buttonsGrid.classList.remove("sci-btn");
+    buttonsGrid.classList.add("basic-btn");
+  }
+}
+
+// Attach the click event
+toggle.addEventListener("click", animatedToggle);
