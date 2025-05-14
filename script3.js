@@ -54,15 +54,15 @@ function parseExpression(input, inRadians) {
   }
   // ====================Handle Exponents=========================
   //   expr = expr.replace(/(\d+)\s*xʸ\s*(\d+)/g, function (_, base, exponent) {
-  //     return `${base}**${exponent}`;
+  //     console.log("Base:", base, "Exponent:", exponent);
+  //     return `Math.pow(${base}, ${exponent})`;
   //   });
   //   expr = expr.replace(/(\d+)\s*x\^y\s*(\d+)/g, function (_, base, exponent) {
-  //     return `${base}**${exponent}`;
+  //     console.log("Base:", base, "Exponent:", exponent);
+  //     return `Math.pow(${base}, ${exponent})`;
   //   });
-  expr = expr.replace(/(\d+)\s*xʸ\s*(\d+)/g, function (_, base, exponent) {
-    return `Math.pow(${base}, ${exponent})`;
-  });
-  expr = expr.replace(/(\d+)\s*x\^y\s*(\d+)/g, function (_, base, exponent) {
+  expr = expr.replace(/(\d+)\^(\d+)/g, function (_, base, exponent) {
+    console.log("Base:", base, "Exponent:", exponent);
     return `Math.pow(${base}, ${exponent})`;
   });
 
@@ -80,7 +80,8 @@ function parseExpression(input, inRadians) {
   });
 
   // Handle EXP (exponential function)
-  expr = expr.replace(/EXP\(([^)]+)\)/g, function (_, val) {
+  expr = expr.replace(/EXP\(([^)]+)\)/gi, function (_, val) {
+    console.log("Value for EXP:", val);
     return `Math.exp(${val})`;
   });
 
@@ -253,10 +254,12 @@ function storeCalculation(expressionText, resultText) {
     historyDropdown.appendChild(dropdownItem);
   }
   calculationHistory.push({ expression: expressionText, result: resultText });
+  //logging the last calculation
   console.log("Calculation stored:", {
     expression: expressionText,
     result: resultText,
   });
+  // Display the full calculation history in the console
   console.log("Full calculation history:", calculationHistory);
 }
 document.getElementById("history-btn").addEventListener("click", function () {
