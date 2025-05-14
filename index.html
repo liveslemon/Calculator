@@ -4,11 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chrome Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=history"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="calculator-container">
-      <div class="display-box"></div>
+      <div class="display-wrapper">
+        <button id="history-btn" class="history-button">
+          <span class="material-symbols-outlined"> history </span>
+        </button>
+        <div class="display-box" id="display">0</div>
+        <div id="history-dropdown" class="hidden"></div>
+      </div>
       <div class="buttons-grid">
         <button class="first-box" id="button-1" data-value="mode">
           <div id="rad-div" class="turn-red">Rad</div>
@@ -22,35 +32,34 @@
         <button data-value="AC">AC</button>
         <button data-value="Inv">Inv</button>
         <button data-value="sin(">sin</button>
-        <button data-value="ln">ln</button>
+        <button data-value="ln(">ln</button>
         <button data-value="7">7</button>
         <button data-value="8">8</button>
         <button data-value="9">9</button>
         <button data-value="/">÷</button>
         <button data-value="π">π</button>
         <button data-value="cos(">cos</button>
-        <button data-value="log">log</button>
+        <button data-value="log(">log</button>
         <button data-value="4">4</button>
         <button data-value="5">5</button>
         <button data-value="6">6</button>
         <button data-value="*">x</button>
         <button data-value="e">e</button>
         <button data-value="tan(">tan</button>
-        <button data-value="√">√</button>
+        <button data-value="√(">√</button>
         <button data-value="1">1</button>
         <button data-value="2">2</button>
         <button data-value="3">3</button>
         <button data-value="-">-</button>
         <button data-value="Ans">Ans</button>
         <button data-value="EXP">EXP</button>
-        <button data-value="xʸ">xʸ</button>
+        <button data-value="^">xʸ</button>
         <button data-value="0">0</button>
         <button data-value=".">.</button>
         <button data-value="=">=</button>
         <button data-value="+">+</button>
       </div>
-      <div class="history-box"></div>
     </div>
-    <script src="./script2.js"></script>
+    <script src="./script3.js"></script>
   </body>
 </html>
