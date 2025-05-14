@@ -80,9 +80,9 @@ function parseExpression(input, inRadians) {
   });
 
   // Handle EXP (exponential function)
-  expr = expr.replace(/EXP\(([^)]+)\)/gi, function (_, val) {
+  expr = expr.replace(/EXP\(([^)]+)\)/g, function (_, val) {
     console.log("Value for EXP:", val);
-    return `Math.exp(${val})`;
+    return `${val}*math.pow(10, ${val})`;
   });
 
   // ======================Handle constant Euler's number(e)================
