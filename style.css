@@ -79,6 +79,7 @@ body {
 }
 .first-box {
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
   grid-column: span 2;
 }
@@ -241,6 +242,16 @@ body {
 }
 
 @media (max-width: 590px) {
+  .first-box {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .first-box > * {
+    display: inline;
+    text-align: center;
+  }
   .container {
     display: block;
   }
