@@ -15,6 +15,9 @@ function factorial(n) {
 function toRadians(deg) {
   return (deg * Math.PI) / 180;
 }
+function toDegrees(rad) {
+  return (rad * 180) / Math.PI;
+}
 
 // ===================== Expression converter ===================== //
 // This function converts the user input, replaces trigonometric functions and exponent notation with their JavaScript equivalents.
@@ -29,42 +32,47 @@ function parseExpression(input, inRadians) {
 
   if (inRadians) {
     // ==================handle trigonometry in radians=================
+
     expr = expr
-      .replace(/sin\(([^)]+)\)/g, function (_, val) {
-        return `Math.sin(toRadians(${val}))`;
-      })
-      .replace(/cos\(([^)]+)\)/g, function (_, val) {
-        return `Math.cos(toRadians(${val}))`;
-      })
-      .replace(/tan\(([^)]+)\)/g, function (_, val) {
-        return `Math.tan(toRadians(${val}))`;
-      });
+      .replace(/sin\(([^)]+)\)/g, (_, val) => `Math.sin(toRadians(${val}))`)
+      .replace(/cos\(([^)]+)\)/g, (_, val) => `Math.cos(toRadians(${val}))`)
+      .replace(/tan\(([^)]+)\)/g, (_, val) => `Math.tan(toRadians(${val}))`);
   } else {
     // ==================handle trigonometry in degrees=================
     expr = expr
-      .replace(/sin\(([^)]+)\)/g, function (_, val) {
-        return `Math.sin(${val})`;
-      })
-      .replace(/cos\(([^)]+)\)/g, function (_, val) {
-        return `Math.cos(${val})`;
-      })
-      .replace(/tan\(([^)]+)\)/g, function (_, val) {
-        return `Math.tan(${val})`;
-      });
+      .replace(/sin\(([^)]+)\)/g, (_, val) => `Math.sin(${val})`)
+      .replace(/cos\(([^)]+)\)/g, (_, val) => `Math.cos(${val})`)
+      .replace(/tan\(([^)]+)\)/g, (_, val) => `Math.tan(${val})`);
   }
+
+  // Handle inverse trigonometric functions
+  if (inRadians) {
+    expr = expr
+      .replace(/sin⁻¹\(([^)]+)\)/g, (_, val) => `toDegrees(Math.asin(${val}))`)
+      .replace(/cos⁻¹\(([^)]+)\)/g, (_, val) => `toDegrees(Math.acos(${val}))`)
+      .replace(/tan⁻¹\(([^)]+)\)/g, (_, val) => `toDegrees(Math.atan(${val}))`);
+  } else {
+    expr = expr
+      .replace(/sin⁻¹\(([^)]+)\)/g, (_, val) => `Math.asin(${val})`)
+      .replace(/cos⁻¹\(([^)]+)\)/g, (_, val) => `Math.acos(${val})`)
+      .replace(/tan⁻¹\(([^)]+)\)/g, (_, val) => `Math.atan(${val})`);
+  }
+  // Handle 10ˣ(x) and eˣ(x)
+  expr = expr
+    .replace(/10ˣ\(([^)]+)\)/g, (_, val) => `Math.pow(10, ${val})`)
+    .replace(/eˣ\(([^)]+)\)/g, (_, val) => `Math.exp(${val})`);
+
+  // Handle x² and ²√x
+  expr = expr
+    .replace(/([0-9.]+)²/g, (_, val) => `Math.pow(${val}, 2)`)
+    .replace(/²√([0-9.]+|\([^()]+\))/g, (_, val) => `Math.sqrt(${val})`);
+
+  // Handle 10^x and e^x
+  expr = expr
+    .replace(/10\^([^)]+)/g, (_, val) => `Math.pow(10, ${val})`)
+    .replace(/e\^([^)]+)/g, (_, val) => `Math.exp(${val})`);
+
   // ====================Handle Exponents=========================
-  //   expr = expr.replace(/(\d+)\s*xʸ\s*(\d+)/g, function (_, base, exponent) {
-  //     console.log("Base:", base, "Exponent:", exponent);
-  //     return `Math.pow(${base}, ${exponent})`;
-  //   });
-  //   expr = expr.replace(/(\d+)\s*x\^y\s*(\d+)/g, function (_, base, exponent) {
-  //     console.log("Base:", base, "Exponent:", exponent);
-  //     return `Math.pow(${base}, ${exponent})`;
-  //   });
-  expr = expr.replace(/(\d+)\^(\d+)/g, function (_, base, exponent) {
-    console.log("Base:", base, "Exponent:", exponent);
-    return `Math.pow(${base}, ${exponent})`;
-  });
 
   // ====================Handle Square Roots======================
   expr = expr.replace(/√\(([^)]+)\)/g, function (_, val) {
@@ -81,8 +89,7 @@ function parseExpression(input, inRadians) {
 
   // Handle EXP (exponential function)
   expr = expr.replace(/EXP\(([^)]+)\)/g, function (_, val) {
-    console.log("Value for EXP:", val);
-    return `${val}*math.pow(10, ${val})`;
+    return `${val}*Math.pow(10, ${val})`;
   });
 
   // ======================Handle constant Euler's number(e)================
@@ -137,6 +144,32 @@ buttons.forEach(function (button) {
       return;
     }
     if (value === "Inv") {
+      const invToggle = button.classList.toggle("active-inv");
+      const inverseButtons = document.querySelectorAll(
+        "[data-normal][data-inverse]"
+      );
+
+      inverseButtons.forEach(function (btn) {
+        const normalVal = btn.getAttribute("data-normal");
+        const inverseVal = btn.getAttribute("data-inverse");
+
+        if (invToggle) {
+          btn.textContent = inverseVal.replace("(", "").replace(")", "");
+          btn.setAttribute("data-value", inverseVal);
+        } else {
+          btn.textContent = normalVal.replace("(", "").replace(")", "");
+          btn.setAttribute("data-value", normalVal);
+        }
+        if (inverseVal === "x²") {
+          btn.setAttribute("data-value", "^2");
+        } else if (inverseVal === "eˣ") {
+          btn.setAttribute("data-value", "e^");
+        } else if (inverseVal === "10ˣ") {
+          btn.setAttribute("data-value", "10^");
+        } else {
+          btn.setAttribute("data-value", inverseVal);
+        }
+      });
       return;
     }
     if (value === "Ans") {

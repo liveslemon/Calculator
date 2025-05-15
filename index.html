@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chrome Calculator</title>
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=history"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-...sha512..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -14,7 +21,10 @@
     <div class="calculator-container">
       <div class="display-wrapper">
         <button id="history-btn" class="history-button">
-          <span class="material-symbols-outlined"> history </span>
+          <i
+            class="fa-solid fa-clock-rotate-left fa-2x"
+            style="color: #ffffff"
+          ></i>
         </button>
         <div class="display-box" id="display">0</div>
         <div id="history-dropdown" class="hidden"></div>
@@ -36,29 +46,78 @@
         <button data-value="%">%</button>
         <button data-value="AC">AC</button>
         <button data-value="Inv" class="sci-btn">Inv</button>
-        <button data-value="sin(" class="sci-btn">sin</button>
-        <button data-value="ln(" class="sci-btn">ln</button>
+        <button
+          data-value="sin("
+          data-normal="sin("
+          data-inverse="sin⁻¹("
+          class="sci-btn"
+        >
+          sin
+        </button>
+        <button
+          data-value="ln("
+          data-normal="ln("
+          data-inverse="eˣ"
+          class="sci-btn"
+        >
+          ln
+        </button>
         <button data-value="7">7</button>
         <button data-value="8">8</button>
         <button data-value="9">9</button>
         <button data-value="/">÷</button>
         <button data-value="π" class="sci-btn">π</button>
-        <button data-value="cos(" class="sci-btn">cos</button>
-        <button data-value="log(" class="sci-btn">log</button>
+        <button
+          data-value="cos("
+          data-normal="cos("
+          data-inverse="cos⁻¹("
+          class="sci-btn"
+        >
+          cos
+        </button>
+        <button
+          data-value="log("
+          data-normal="log("
+          data-inverse="10ˣ"
+          class="sci-btn"
+        >
+          log
+        </button>
         <button data-value="4">4</button>
         <button data-value="5">5</button>
         <button data-value="6">6</button>
         <button data-value="*">x</button>
         <button data-value="e" class="sci-btn">e</button>
-        <button data-value="tan(" class="sci-btn">tan</button>
-        <button data-value="√(" class="sci-btn">√</button>
+        <button
+          data-value="tan("
+          data-normal="tan("
+          data-inverse="tan⁻¹("
+          class="sci-btn"
+        >
+          tan
+        </button>
+        <button
+          data-value="√("
+          data-normal="√("
+          data-inverse="x²"
+          class="sci-btn"
+        >
+          √
+        </button>
         <button data-value="1">1</button>
         <button data-value="2">2</button>
         <button data-value="3">3</button>
         <button data-value="-">-</button>
         <button data-value="Ans" class="sci-btn">Ans</button>
-        <button data-value="EXP" class="sci-btn">EXP</button>
-        <button data-value="^" class="sci-btn">xʸ</button>
+        <button data-value="E" class="sci-btn">EXP</button>
+        <button
+          data-value="^"
+          data-normal="xʸ"
+          data-inverse="²√("
+          class="sci-btn"
+        >
+          xʸ
+        </button>
         <button data-value="0">0</button>
         <button data-value=".">.</button>
         <button data-value="=" class="sci-btn">=</button>
