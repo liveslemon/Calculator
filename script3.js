@@ -149,25 +149,25 @@ buttons.forEach(function (button) {
         "[data-normal][data-inverse]"
       );
 
-      inverseButtons.forEach(function (btn) {
+      inverseButtons.forEach((btn) => {
         const normalVal = btn.getAttribute("data-normal");
         const inverseVal = btn.getAttribute("data-inverse");
 
+        const text = invToggle ? inverseVal : normalVal;
+        btn.textContent = text.replace("(", "").replace(")", "");
+
         if (invToggle) {
-          btn.textContent = inverseVal.replace("(", "").replace(")", "");
-          btn.setAttribute("data-value", inverseVal);
+          if (inverseVal === "x²") {
+            btn.setAttribute("data-value", "^2");
+          } else if (inverseVal === "10ˣ") {
+            btn.setAttribute("data-value", "10^");
+          } else if (inverseVal === "eˣ") {
+            btn.setAttribute("data-value", "e^");
+          } else {
+            btn.setAttribute("data-value", inverseVal);
+          }
         } else {
-          btn.textContent = normalVal.replace("(", "").replace(")", "");
           btn.setAttribute("data-value", normalVal);
-        }
-        if (inverseVal === "x²") {
-          btn.setAttribute("data-value", "^2");
-        } else if (inverseVal === "eˣ") {
-          btn.setAttribute("data-value", "e^");
-        } else if (inverseVal === "10ˣ") {
-          btn.setAttribute("data-value", "10^");
-        } else {
-          btn.setAttribute("data-value", inverseVal);
         }
       });
       return;

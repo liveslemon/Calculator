@@ -252,6 +252,24 @@ body {
     display: inline;
     text-align: center;
   }
+  .first-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    grid-column: span 2;
+  }
+
+  .first-box > button {
+    flex: 1 0 30%; /* or use a fixed width like 70px */
+    margin: 5px;
+  }
+
+  .buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 10px;
+  }
   .container {
     display: block;
   }
@@ -334,18 +352,12 @@ body {
   .buttons-grid.sci-btn button[data-value="mode"],
   .buttons-grid.sci-btn button[data-value="!"],
   .buttons-grid.sci-btn button[data-value="Inv"],
-  .buttons-grid.sci-btn button[data-value="sin("],
-  .buttons-grid.sci-btn button[data-value="cos("],
-  .buttons-grid.sci-btn button[data-value="tan("],
-  .buttons-grid.sci-btn button[data-value="log("],
-  .buttons-grid.sci-btn button[data-value="ln("],
-  .buttons-grid.sci-btn button[data-value="^"],
-  .buttons-grid.sci-btn button[data-value="√("],
+  .buttons-grid.sci-btn button[data-normal][data-inverse],
   .buttons-grid.sci-btn button[data-value="π"],
   .buttons-grid.sci-btn button[data-value="Ans"],
   .buttons-grid.sci-btn button[data-value="E"],
-  .buttons-grid.sci-btn button[data-value="="],
-  .buttons-grid.sci-btn button[data-value="e"] {
+  .buttons-grid.sci-btn button[data-value="e"],
+  .buttons-grid.sci-btn button[data-value="="] {
     display: block;
   }
 }
